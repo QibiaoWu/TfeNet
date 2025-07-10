@@ -1,4 +1,159 @@
-# TfeNet
-Paper: Airway Segmentation Network for Enhanced Tubular Feature Extraction
+# Airway Segmentation Network for Enhanced Tubular Feature Extraction
+## Requirements
 
-Note: The paper code will be publicly released upon acceptance
+python==3.8
+pytorch==2.4.1
+CUDA==12.1
+numpy==1.24.4
+SimpleITK==2.4.0
+
+For other tools, please install them when running error.
+
+## Install DAConv/DSConv
+Please enter the DAConv and DSConv folders respectively to execute the installation (Make sure you have CUDA Toolkit installed):
+
+```bash
+python setup.py install
+```
+
+For more information about DAConv and DSConv , please refer to the following paper.
+
+- Qi, Y., He, Y., Qi, X., Zhang, Y., & Yang, G. (2023). Dynamic Snake Convolution based on Topological Geometric Constraints for Tubular Structure Segmentation. *2023 IEEE/CVF International Conference on Computer Vision (ICCV)*, 6047-6056. URL: [Dynamic Snake Convolution based on Topological Geometric Constraints for Tubular Structure Segmentation | IEEE Conference Publication | IEEE Xplore](https://ieeexplore.ieee.org/document/10378018/)
+- Wu, Q., Wang, Y., Zhang, Q. Airway Segmentation Network for Enhanced Tubular Feature Extraction, 2025. URL: https://arxiv.org/abs/2507.06581
+
+## Datasets
+
+- **BAS** dataset label : https://github.com/haozheng-sjtu/3d-airway-segmentation/blob/main/BAS.rar
+  BAS dataset image info please refer to paper : Zheng, H., Qin, Y., Gu, Y., Xie, F., Yang, J., Sun, J., & Yang, G. (2020). Alleviating Class-Wise Gradient Imbalance for Pulmonary Airway Segmentation. *IEEE Transactions on Medical Imaging, 40*, 2452-2462.
+
+- **ATM22** challenge website: https://atm22.grand-challenge.org/
+
+- **AIIB23** challenge website: https://codalab.lisn.upsaclay.fr/competitions/13238
+
+  **Note:** The ATM22 and AIIB23 datasets need to be registered on the challenge website and an application submitted to organizers with official email address. The validation set can be submitted online to obtain the evaluation results, while the test set needs to be submitted to the official party. The test is conducted through Docker and the evaluation feedback is combined. For more information, please visit the challenge website.
+
+
+## Predict
+Our trained model can be downloaded from:
+https://drive.google.com/file/d/1MMcwD8_QgJVcRM2Gy1rrLFe0Ogh1-7Hy/view?usp=drive_link
+
+Unzip the downloaded file and place it in the ./checkpoint directory like:
+
+checkpoint/
+├── AIIB23
+│   ├── nnUNet
+│   │   ├── checkpoint_final.pth
+│   │   ├── dataset_fingerprint.json
+│   │   ├── dataset.json
+│   │   └── plans.json
+│   └── TfeNetSmall_checkpoint.ckpt
+├── ATM22
+│   ├── TfeNet_checkpoint.ckpt
+│   └── TfeNetSmall_checkpoint.ckpt
+└── BAS
+    ├── TfeNet_checkpoint.ckpt
+    └── TfeNetSmall_checkpoint.ckpt
+
+TfeNet_checkpoint.ckpt and TfeNetSmall_checkpoint.ckpt is the trained model of TfeNet and TfeNetSmall respectively.   checkpoint_final.pth is the trained model of nnUNet.  For information about the nnUNet network structure, you can refer to the plan.json file.
+
+The prediction process is divided into three steps (all case are in .nii.gz or .nii format) :
+1. Perform the prediction to predict the whole airway and the small airway respectively. (You can modify the weights used in evaluation.py)
+2. Combined the whole airway and small airway. (concat.py)
+3. The Combined airway is post-processed to obtain the largest connected component. (postprocessing.py)
+
+run the following command:
+
+```bash
+predict.sh # The default is the trained weights obtained through ATM22.
+```
+
+**Note:** Must set your input folder before prediction in evaluation.py(data_path = "/your/inputs"), Finished prediction results will be stored in the ./predict_result/outputs folder.
+
+## train
+
+The data structure we expect is as follows：
+
+./BAS/
+├── image
+│   ├── test
+│   ├── train
+│   └── val
+├── image_clean
+│   ├── test
+│   ├── train
+│   └── val
+├── label
+│   ├── test
+│   ├── train
+│   └── val
+├── label_clean
+│   ├── test
+│   ├── train
+│   └── val
+├── LIB_weight
+│   └── train
+├── LIB_weight_small
+│   └── train
+├── lungmask
+│   ├── test
+│   ├── train
+│   └── val
+├── lungmask_clean
+│   ├── test
+│   ├── train
+│   └── val
+├── smallairway
+│   └── train
+└── smallairway_clean
+    ├── test
+    ├── train
+    └── val
+
+The folders with "_clean" in their names indicate the data that has been preprocessed.
+
+
+
+dataset prepare as follow:
+
+1. extract lung mask
+    pip install lungmask # more details please refer to https://github.com/JoHof/lungmask
+    
+    ```bash
+    python extra_lungmask.py # please modify the path of your input and save folder.
+    ```
+    
+2. extract small airway from lungmask and label
+    python extra_smallairway.py # please modify the path of your input and save folder.
+
+4. Data preprocessing involves region of interest cropping and HU adjustment. ( preprocessing.py )
+
+5. the LIB weights for generating the entire airway and the small airways respectively. (LIB_weight.py)
+
+6. change your data path in config of TfeNet.py ('dataset_path': r'/your/BAS')
+
+7. Start training by running train.sh, see options.py for more details on how to set the training parameters.
+
+
+## Evaluation for train phase
+If you want to evaluate the results of the training (e.g. IOU, Precision, DSC, Sensitivity, TD, BD), you can use evaluation_meters.py.
+
+## Citation
+
+If you find our code or paper useful, please cite as (This paper in journal version will be updated later).
+
+```latex
+@misc{wu2025airwaysegmentationnetworkenhanced,
+      title={Airway Segmentation Network for Enhanced Tubular Feature Extraction}, 
+      author={Qibiao Wu and Yagang Wang and Qian Zhang},
+      year={2025},
+      eprint={2507.06581},
+      archivePrefix={arXiv},
+      primaryClass={eess.IV},
+      url={https://arxiv.org/abs/2507.06581}, 
+}
+```
+
+
+
+
+
