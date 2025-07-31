@@ -1,11 +1,12 @@
 # Airway Segmentation Network for Enhanced Tubular Feature Extraction
 ## Requirements
 
-python==3.8
-pytorch==2.4.1
-CUDA==12.1
-numpy==1.24.4
-SimpleITK==2.4.0
+- python==3.8
+
+- pytorch==2.4.1
+- CUDA==12.1
+- numpy==1.24.4
+- SimpleITK==2.4.0
 
 For other tools, please install them when running error.
 
@@ -39,6 +40,7 @@ https://drive.google.com/file/d/1MMcwD8_QgJVcRM2Gy1rrLFe0Ogh1-7Hy/view?usp=drive
 
 Unzip the downloaded file and place it in the ./checkpoint directory like:
 
+```
 checkpoint/
 ├── AIIB23
 │   ├── nnUNet
@@ -53,8 +55,9 @@ checkpoint/
 └── BAS
     ├── TfeNet_checkpoint.ckpt
     └── TfeNetSmall_checkpoint.ckpt
+```
 
-TfeNet_checkpoint.ckpt and TfeNetSmall_checkpoint.ckpt is the trained model of TfeNet and TfeNetSmall respectively.   checkpoint_final.pth is the trained model of nnUNet.  For information about the nnUNet network structure, you can refer to the plan.json file.
+TfeNet_checkpoint.ckpt and TfeNetSmall_checkpoint.ckpt is the trained model of TfeNet and TfeNetSmall respectively.   checkpoint_final.pth is the trained model of nnUNet.  For information about the nnUNet network structure, you can refer to the plans.json file.
 
 The prediction process is divided into three steps (all case are in .nii.gz or .nii format) :
 1. Perform the prediction to predict the whole airway and the small airway respectively. (You can modify the weights used in evaluation.py)
@@ -73,6 +76,7 @@ predict.sh # The default is the trained weights obtained through ATM22.
 
 The data structure we expect is as follows：
 
+```
 ./BAS/
 ├── image
 │   ├── test
@@ -108,23 +112,25 @@ The data structure we expect is as follows：
     ├── test
     ├── train
     └── val
+```
 
 The folders with "_clean" in their names indicate the data that has been preprocessed.
-
-
 
 dataset prepare as follow:
 
 1. extract lung mask
-    pip install lungmask # more details please refer to https://github.com/JoHof/lungmask
     
     ```bash
+    pip install lungmask # more details please refer to https://github.com/JoHof/lungmask
     python extra_lungmask.py # please modify the path of your input and save folder.
     ```
     
 2. extract small airway from lungmask and label
+    
+    ```bash
     python extra_smallairway.py # please modify the path of your input and save folder.
-
+    ```
+    
 4. Data preprocessing involves region of interest cropping and HU adjustment. ( preprocessing.py )
 
 5. the LIB weights for generating the entire airway and the small airways respectively. (LIB_weight.py)
