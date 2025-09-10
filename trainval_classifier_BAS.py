@@ -6,7 +6,7 @@ from torch.nn import functional as F
 from tqdm import tqdm
 from utils import save_itk, load_itk_image, DSC_np, precision_np,\
 sensitivity_np, accrancy_np, combine_total_avg, combine_total, normalize_min_max
-from loss import TverskyLoss,BoundaryDoULoss3D,tversky_loss_2,dice_loss, binary_cross_entropy, focal_loss, general_union_loss
+from loss import general_union_loss
 from torch.cuda import empty_cache
 import csv
 from scipy.ndimage.interpolation import zoom
