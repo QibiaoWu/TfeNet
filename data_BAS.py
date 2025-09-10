@@ -10,7 +10,6 @@ from scipy.ndimage.filters import gaussian_filter
 from utils import load_itk_image
 import scipy.ndimage as ndimage
 from skimage.morphology import skeletonize_3d
-from batchgenerators.transforms.spatial_transforms  import SpatialTransform 
 np.random.seed(777) #numpy
 
 class AirwayData(Dataset):
