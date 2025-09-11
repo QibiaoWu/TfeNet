@@ -44,11 +44,7 @@ Unzip the downloaded file and place it in the ./checkpoint directory like:
 ```
 checkpoint/
 ├── AIIB23
-│   ├── nnUNet
-│   │   ├── checkpoint_final.pth
-│   │   ├── dataset_fingerprint.json
-│   │   ├── dataset.json
-│   │   └── plans.json
+│   ├── TfeNet_checkpoint.ckpt
 │   └── TfeNetSmall_checkpoint.ckpt
 ├── ATM22
 │   ├── TfeNet_checkpoint.ckpt
@@ -58,7 +54,7 @@ checkpoint/
     └── TfeNetSmall_checkpoint.ckpt
 ```
 
-TfeNet_checkpoint.ckpt and TfeNetSmall_checkpoint.ckpt is the trained model of TfeNet and TfeNetSmall respectively.   checkpoint_final.pth is the trained model of nnUNet.  For information about the nnUNet network structure, you can refer to the plans.json file.
+TfeNet_checkpoint.ckpt and TfeNetSmall_checkpoint.ckpt is the trained model of TfeNet and TfeNetSmall respectively. 
 
 The prediction process is divided into three steps (all case are in .nii.gz or .nii format) :
 1. Perform the prediction to predict the whole airway and the small airway respectively. (You can modify the weights used in evaluation.py)
