@@ -28,16 +28,16 @@ For more information about DAConv and DSConv , please refer to the following pap
 - **BAS** dataset label : https://github.com/haozheng-sjtu/3d-airway-segmentation/blob/main/BAS.rar
   BAS dataset image info please refer to paper : Zheng, H., Qin, Y., Gu, Y., Xie, F., Yang, J., Sun, J., & Yang, G. (2020). Alleviating Class-Wise Gradient Imbalance for Pulmonary Airway Segmentation. *IEEE Transactions on Medical Imaging, 40*, 2452-2462.
 
-- **ATM22** challenge website: https://atm22.grand-challenge.org/
+- **ATM22** [challenge website](https://atm22.grand-challenge.org/)
 
-- **AIIB23** challenge website: https://codalab.lisn.upsaclay.fr/competitions/13238
+- **AIIB23** [challenge website](https://codalab.lisn.upsaclay.fr/competitions/13238)
 
   **Note:** The ATM22 and AIIB23 datasets need to be registered on the challenge website and an application submitted to organizers with official email address. The validation set can be submitted online to obtain the evaluation results, while the test set needs to be submitted to the official party. The test is conducted through Docker and the evaluation feedback is combined. For more information, please visit the challenge website.
 
 
 ## Predict
-Our trained model can be downloaded from:
-https://drive.google.com/file/d/1MMcwD8_QgJVcRM2Gy1rrLFe0Ogh1-7Hy/view?usp=drive_link
+Our trained model can be downloaded from [here](https://drive.google.com/file/d/1DEKyAMhV90AL80qoy2QgDxmO0F1cXx1r/view?usp=drive_link)
+
 
 Unzip the downloaded file and place it in the ./checkpoint directory like:
 
@@ -132,7 +132,7 @@ dataset prepare as follow:
 
 5. the LIB weights for generating the entire airway and the small airways respectively. (LIB_weight.py)
 
-6. change your data path in config of TfeNet.py ('dataset_path': r'/your/BAS')
+6. change your data path in config of TfeNet.py ('dataset_path': r'/path/to/BAS')
 
 7. Start training by running train.sh, see options.py for more details on how to set the training parameters.
 
