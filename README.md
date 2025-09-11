@@ -25,7 +25,7 @@ For more information about DAConv and DSConv , please refer to the following pap
 
 ## Datasets
 
-- **BAS** dataset label : https://github.com/haozheng-sjtu/3d-airway-segmentation/blob/main/BAS.rar
+- **BAS** [dataset label](https://github.com/haozheng-sjtu/3d-airway-segmentation/blob/main/BAS.rar)
   BAS dataset image info please refer to paper : Zheng, H., Qin, Y., Gu, Y., Xie, F., Yang, J., Sun, J., & Yang, G. (2020). Alleviating Class-Wise Gradient Imbalance for Pulmonary Airway Segmentation. *IEEE Transactions on Medical Imaging, 40*, 2452-2462.
 
 - **ATM22** [challenge website](https://atm22.grand-challenge.org/)
