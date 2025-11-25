@@ -1,7 +1,8 @@
 # Direction-Aware Convolution for Airway Tubular Feature Enhancement Network
-
+## News!!
+Our Paper is accepted by MedIA.
 ## Abstract
-Manual annotation of airway regions in computed tomography images is a time-consuming and expertise-dependent task. Automatic airway segmentation is therefore a prerequisite for enabling rapid bronchoscopic navigation and the clinical deployment of bronchoscopic robotic systems. Although convolutional neural network methods have gained considerable attention in airway segmentation, the unique tree-like structure of airways poses challenges for conventional and deformable convolutions, which often fail to focus on fine airway structures, leading to missed segments and discontinuities. To address this issue, this study proposes a novel tubular feature extraction network, named TfeNet. TfeNet introduces a novel direction-aware convolution operator that adapts the geometry of linear convolution kernels through spatial rotation transformations, enabling it to dynamically align with the tubular structures of airways and effectively enhance feature extraction. Furthermore, a tubular feature fusion module (TFFM) is designed based on asymmetric convolution and residual connection strategies, effectively capturing the features of airway tubules from different directions. Extensive experiments conducted on one public dataset and two datasets used in airway segmentation challenges demonstrate that the proposed TfeNet achieves more accuracy and continuous airway structure predictions compared with existing methods. In particular, TfeNet achieves the highest overall score of 94.95% on the current largest airway segmentation dataset, Airway Tree Modeling (ATM22), and demonstrates advanced performance on the lung fibrosis dataset (AIIB23).
+Manual annotation of airway regions in computed tomography images is a time-consuming and expertise dependent task. Automatic airway segmentation is therefore a prerequisite for enabling rapid bronchoscopic navigation and the clinical deployment of bronchoscopic robotic systems. Although convolutional neural network methods have gained considerable attention in airway segmentation, the unique tree-like structure of airways poses challenges for conventional and deformable convolutions, which often fail to focus on fine airway structures, leading to missed segments and discontinuities. To address this issue, this study proposes a novel tubular feature extraction network, named TfeNet. TfeNet introduces a novel direction-aware convolution operator that adapts the geometry of linear convolution kernels through spatial rotation transformations, enabling it to dy namically align with the tubular structures of airways and effectively enhance feature extraction. Furthermore, a tubular feature fusion module (TFFM) is designed based on asymmetric convolution and residual connection strategies, effectively capturing the features of airway tubules from different directions. Extensive experiments conducted on one public dataset and two datasets used in airway segmentation challenges demonstrate the effectiveness of TfeNet. Specifically, our method achieves a comprehensive lead in both accuracy and continuity on the BAS dataset, attains the highest mean score of 94.95% on the ATM22 dataset by balancing accuracy and continuity, and demonstrates superior leakage control and precision on the challenging AIIB23 dataset.
 
 ## Installation
 ```bash
@@ -21,7 +22,7 @@ python setup.py install
 For more information about DAConv and DSConv , please refer to the following paper.
 
 - Qi, Y., He, Y., Qi, X., Zhang, Y., & Yang, G. (2023). Dynamic Snake Convolution based on Topological Geometric Constraints for Tubular Structure Segmentation. *2023 IEEE/CVF International Conference on Computer Vision (ICCV)*, 6047-6056. URL: [Dynamic Snake Convolution based on Topological Geometric Constraints for Tubular Structure Segmentation | IEEE Conference Publication | IEEE Xplore](https://ieeexplore.ieee.org/document/10378018/)
-- Wu, Q., Wang, Y., Zhang, Q. Airway Segmentation Network for Enhanced Tubular Feature Extraction, 2025. URL: https://arxiv.org/abs/2507.06581
+- Wu, Q., Wang, Y., Zhang, Q. Direction-Aware convolution for airway tubular feature enhancement network, 2025. [URL](https://doi.org/10.1016/j.media.2025.103882)
 
 ## Datasets
 
@@ -142,17 +143,18 @@ If you want to evaluate the results of the training (e.g. IOU, Precision, DSC, S
 
 ## Citation
 
-If you find our code or paper useful, please cite as (This paper in journal version will be updated later).
-
+If you find our code or paper useful, please cite as
 ```latex
-@misc{wu2025airwaysegmentationnetworkenhanced,
-      title={Airway Segmentation Network for Enhanced Tubular Feature Extraction}, 
-      author={Qibiao Wu and Yagang Wang and Qian Zhang},
-      year={2025},
-      eprint={2507.06581},
-      archivePrefix={arXiv},
-      primaryClass={eess.IV},
-      url={https://arxiv.org/abs/2507.06581}, 
+@article{WU2026103882,
+title = {Direction-Aware convolution for airway tubular feature enhancement network},
+journal = {Medical Image Analysis},
+volume = {108},
+pages = {103882},
+year = {2026},
+issn = {1361-8415},
+doi = {https://doi.org/10.1016/j.media.2025.103882},
+url = {https://www.sciencedirect.com/science/article/pii/S1361841525004281},
+author = {Qibiao Wu and Yagang Wang and Qian Zhang},
 }
 ```
 
