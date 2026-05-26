@@ -26,9 +26,11 @@ def get_lr(epoch, args):
 	:return: learning rate of the next epoch
 	"""
 	if args.lr is None:
-		assert epoch <= args.lr_stage[-1]
-		lrstage = np.sum(epoch > args.lr_stage)
-		lr = args.lr_preset[lrstage]
+		if epoch <= args.lr_stage[-1]:
+			lrstage = np.sum(epoch > args.lr_stage)
+			lr = args.lr_preset[lrstage]
+		else:
+			lr = args.lr_preset[-1]
 	else:
 		lr = args.lr
 	return lr

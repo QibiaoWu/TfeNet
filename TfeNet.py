@@ -10,7 +10,7 @@ def get_model(args=None):
 
 	config = {'pad_value': 0,     
 		'augtype': {'rotate': True},
-		'startepoch': 0, 'lr_stage': np.array([20, 40, 60, 70]), 'lr': np.array([1e-2, 1e-3, 1e-4,1e-5]),	
+		'startepoch': 0, 'lr_stage': np.array([20, 40, 60, 70]), 'lr': np.array([1e-2, 1e-3, 1e-4, 1e-5]),	
 		'dataset_path': args.dataset_path}
 
 	print('# of network parameters:', sum(param.numel() for param in net.parameters()))
