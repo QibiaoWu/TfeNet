@@ -26,7 +26,7 @@ def network_prediction(data_path, save_path, ckpt_path, args, ifsmall=False):
     cube_size = 128
     step = 64
     for i, (x, origin, spacing, name) in enumerate(val_loader_case):
-        case_name = name[0]
+        case_name = name[0].replace("_0000", "")
         print(case_name)
         pred = np.zeros(x.shape)
         pred_num = np.zeros(x.shape)
@@ -71,7 +71,7 @@ def network_prediction(data_path, save_path, ckpt_path, args, ifsmall=False):
         pred[pred < 0.5] = 0
         pred = np.squeeze(pred)
 
-        print(os.path.join(save_path,case_name))
+        print(os.path.join(save_path, case_name))
         save_itk(pred.astype(np.uint8), origin[0], spacing[0], os.path.join(save_path, case_name))
 
 if __name__ == '__main__':

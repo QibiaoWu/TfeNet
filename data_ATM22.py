@@ -219,7 +219,7 @@ class SegValData(Dataset):
 		list = os.listdir(file_path)
 		self.file_list = []
 		for file in list:
-			path = os.path.join(file_path,file)
+			path = os.path.join(file_path, file)
 			self.file_list.append(path)
 
 	def __len__(self):
@@ -227,7 +227,7 @@ class SegValData(Dataset):
 
 	def __getitem__(self, item):
 		name = self.file_list[item].split('/')[-1]
-		img,origin,spacing = load_itk_image(self.file_list[item])
+		img, origin, spacing = load_itk_image(self.file_list[item])
 
 		img = lumTrans_hu(img)
 		img = (img.astype(np.float32))/255.0
