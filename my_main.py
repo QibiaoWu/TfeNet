@@ -594,7 +594,7 @@ def train_early_stop(args):
 				'args': args,
 				'epoch': epoch,
 				'logging': my_logger.get_checkpoint()},
-				os.path.join(save_dir, 'final.ckpt'))
+				os.path.join(save_dir, f"final_{end_epoch}.ckpt"))
 
 		if stop:
 			break
